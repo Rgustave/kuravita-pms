@@ -1,4 +1,4 @@
-package com.kiravita.inventorymanagementservice.configuration;
+package com.kuravita.inventorymanagementservice.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

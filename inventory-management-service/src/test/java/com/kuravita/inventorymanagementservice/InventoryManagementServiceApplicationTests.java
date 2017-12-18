@@ -1,4 +1,4 @@
-package com.kiravita.inventorymanagementservice;
+package com.kuravita.inventorymanagementservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
