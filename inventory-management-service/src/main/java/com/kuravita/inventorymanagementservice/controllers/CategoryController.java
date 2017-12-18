@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.kuravita.inventorymanagementservice.databasemodels.Category;
 import com.kuravita.inventorymanagementservice.repositories.CategoryRepository;
@@ -23,7 +23,7 @@ import com.kuravita.inventorymanagementservice.repositories.CategoryRepository;
  *
  */
 @CrossOrigin		//Enabling Cross Origin Requests for a RESTful Web Service
-@Controller    // This means that this class is a RestController
+@RestController    // This means that this class is a RestController
 @RequestMapping(path="/api")
 public class CategoryController {
 	@Autowired
@@ -45,19 +45,19 @@ public class CategoryController {
 	}
 	
 	//Get one by Id
-	@GetMapping("/category/{id}")
-	public ResponseEntity<Category> getCategoryById(@PathVariable(value = "id") Integer categoryId){
-		Category cat = catRepo.findOne(categoryId);
+	@GetMapping("/category/{name}")
+	public ResponseEntity<Category> getCategoryById(@PathVariable(value = "name") String categoryName){
+		Category cat = catRepo.findByName(categoryName);
 		if(cat == null)
 			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok().body(cat);
 	}
 	
 	//Update
-	@PutMapping("/notes/{id}")
-	public ResponseEntity<Category> updateNote(@PathVariable(value = "id") Integer catId, 
+	@PutMapping("/notes/{name}")
+	public ResponseEntity<Category> updateNote(@PathVariable(value = "name") String catName, 
 	                                       @Valid @RequestBody Category cat) {
-	    Category category = catRepo.findOne(catId);
+	    Category category = catRepo.findByName(catName);
 	    if(category == null) {
 	        return ResponseEntity.notFound().build();
 	    }
@@ -69,9 +69,9 @@ public class CategoryController {
 	}
 	
 	//Delete
-	@DeleteMapping("/Category/{id}")
-	public ResponseEntity<Category> deleteNote(@PathVariable(value = "id") Integer catId) {
-	    Category category = catRepo.findOne(catId);
+	@DeleteMapping("/Category/{name}")
+	public ResponseEntity<Category> deleteNote(@PathVariable(value = "name") String catName) {
+	    Category category = catRepo.findByName(catName);
 	    if(category == null) {
 	        return ResponseEntity.notFound().build();
 	    }
