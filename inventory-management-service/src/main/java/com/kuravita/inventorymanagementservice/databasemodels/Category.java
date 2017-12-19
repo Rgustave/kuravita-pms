@@ -27,7 +27,7 @@ public class Category {
 	@Column(unique=true)
 	private String name;
 	private String description;
-	@OneToMany(mappedBy="category", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="category", cascade =CascadeType.ALL, fetch=FetchType.EAGER)	//owner of the relationship.
 	private Set<Product> products;
 	
 	public Integer getIdCategory() {

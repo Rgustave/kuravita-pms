@@ -57,6 +57,7 @@ public class Product {
 	public String toString(){
     		String jsonText = "";
     		try {
+    			//TODO: Jackson spring boot
 	        JSONObject proJsonObject = new JSONObject();
 	        proJsonObject.put("name",this.name);
 	        proJsonObject.put("description", this.getDescription());

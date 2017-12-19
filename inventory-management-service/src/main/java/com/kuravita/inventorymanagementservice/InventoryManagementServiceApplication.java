@@ -1,3 +1,4 @@
+
 package com.kuravita.inventorymanagementservice;
 
 import org.springframework.boot.SpringApplication;
@@ -17,9 +18,7 @@ public class InventoryManagementServiceApplication {
     //private String instance;
 	
 	public static void main(String[] args) {
-		SpringApplication.run(InventoryManagementServiceApplication.class, args);
-		
-		
+		SpringApplication.run(InventoryManagementServiceApplication.class, args);				
 	}
 	
 	@RequestMapping("/")

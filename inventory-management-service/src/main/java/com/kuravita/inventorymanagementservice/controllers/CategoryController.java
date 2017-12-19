@@ -1,6 +1,7 @@
 package com.kuravita.inventorymanagementservice.controllers;
 
 import javax.validation.Valid;
+import javax.ws.rs.Consumes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.common.net.MediaType;
 import com.kuravita.inventorymanagementservice.databasemodels.Category;
 import com.kuravita.inventorymanagementservice.repositories.CategoryRepository;
 
@@ -67,6 +69,7 @@ public class CategoryController {
 	 * @param cat
 	 * @return
 	 */
+	//@Consumes(MediaType.ANY_APPLICATION_TYPE.)
 	@PutMapping("/updateOne/{name}")
 	public ResponseEntity<Category> updateCategory(@PathVariable(value = "name") String catName, 
 	                                       @Valid @RequestBody Category cat) {
@@ -74,10 +77,12 @@ public class CategoryController {
 	    if(category == null) {
 	        return ResponseEntity.notFound().build();
 	    }
+	   
 	    category.setName(cat.getName());
 	    category.setDescription(cat.getDescription());
 
-	    Category updatedCategory = catRepo.save(category);
+	    Category updatedCategory = catRepo.save(cat);
+	    
 	    return ResponseEntity.ok(updatedCategory);
 	}
 	
