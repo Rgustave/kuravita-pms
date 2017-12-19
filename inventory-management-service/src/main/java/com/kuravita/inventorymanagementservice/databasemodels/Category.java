@@ -1,10 +1,15 @@
 package com.kuravita.inventorymanagementservice.databasemodels;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -22,6 +27,8 @@ public class Category {
 	@Column(unique=true)
 	private String name;
 	private String description;
+	@OneToMany(mappedBy="category", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private Set<Product> products;
 	
 	public Integer getIdCategory() {
 		return idCategory;
@@ -40,5 +47,12 @@ public class Category {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(Set<Product> products) {
+		this.products = products;
 	}
 }

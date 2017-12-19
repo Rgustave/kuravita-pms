@@ -18,6 +18,7 @@ public class Store {
 	private String name;
 	private String logo;
 	private String address;
+	
 	public Integer getIdStore() {
 		return idStore;
 	}

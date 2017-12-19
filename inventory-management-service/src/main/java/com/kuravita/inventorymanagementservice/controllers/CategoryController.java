@@ -24,28 +24,36 @@ import com.kuravita.inventorymanagementservice.repositories.CategoryRepository;
  */
 @CrossOrigin		//Enabling Cross Origin Requests for a RESTful Web Service
 @RestController    // This means that this class is a RestController
-@RequestMapping(path="/api")
+@RequestMapping(path="/category")
 public class CategoryController {
 	@Autowired
 	private CategoryRepository catRepo;
 	
-	//Create
-	@PostMapping("/category")
+	/**
+	 * Save new category
+	 * @param category
+	 * @return
+	 */
+	@PostMapping("/save")
 	public Category saveCategory(@Valid @RequestBody Category category) {
 		return catRepo.save(category);
 	}
 	
 	/**
-	 * Read
+	 * read all
+	 * @return
 	 */
-	//read all
-	@GetMapping("/categories")
+	@GetMapping("/getAll")
 	public Iterable<Category> getAllCategories(){
 		return catRepo.findAll();
 	}
 	
-	//Get one by Id
-	@GetMapping("/category/{name}")
+	/**
+	 * Get one by name
+	 * @param categoryName
+	 * @return
+	 */
+	@GetMapping("/getOne/{name}")
 	public ResponseEntity<Category> getCategoryById(@PathVariable(value = "name") String categoryName){
 		Category cat = catRepo.findByName(categoryName);
 		if(cat == null)
@@ -53,24 +61,33 @@ public class CategoryController {
 		return ResponseEntity.ok().body(cat);
 	}
 	
-	//Update
-	@PutMapping("/notes/{name}")
-	public ResponseEntity<Category> updateNote(@PathVariable(value = "name") String catName, 
+	/**
+	 * Update one
+	 * @param catName
+	 * @param cat
+	 * @return
+	 */
+	@PutMapping("/updateOne/{name}")
+	public ResponseEntity<Category> updateCategory(@PathVariable(value = "name") String catName, 
 	                                       @Valid @RequestBody Category cat) {
 	    Category category = catRepo.findByName(catName);
 	    if(category == null) {
 	        return ResponseEntity.notFound().build();
 	    }
-	    category.setIdCategory(cat.getIdCategory());
+	    category.setName(cat.getName());
 	    category.setDescription(cat.getDescription());
 
-	    Category updatedCategoty = catRepo.save(category);
-	    return ResponseEntity.ok(updatedCategoty);
+	    Category updatedCategory = catRepo.save(category);
+	    return ResponseEntity.ok(updatedCategory);
 	}
 	
-	//Delete
-	@DeleteMapping("/Category/{name}")
-	public ResponseEntity<Category> deleteNote(@PathVariable(value = "name") String catName) {
+	/**
+	 * Delete one
+	 * @param catName
+	 * @return
+	 */
+	@DeleteMapping("/deleteOne/{name}")
+	public ResponseEntity<Category> deleteCategory(@PathVariable(value = "name") String catName) {
 	    Category category = catRepo.findByName(catName);
 	    if(category == null) {
 	        return ResponseEntity.notFound().build();
