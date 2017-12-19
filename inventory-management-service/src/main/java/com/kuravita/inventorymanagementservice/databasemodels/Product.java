@@ -1,5 +1,9 @@
 package com.kuravita.inventorymanagementservice.databasemodels;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.json.JSONObject;
@@ -29,6 +34,10 @@ public class Product {
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idCategory")
     private Category category;
+	
+	@OneToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name="product_id")
+	private Set<CurrentInventory> currentInventory = new HashSet<CurrentInventory>();
 	
 	public Integer getIdProduct() {
 		return idProduct;
@@ -53,6 +62,13 @@ public class Product {
 	}
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	
+	public Set<CurrentInventory> getCurrentInventory() {
+		return currentInventory;
+	}
+	public void setCurrentInventory(Set<CurrentInventory> currentInventory) {
+		this.currentInventory = currentInventory;
 	}
 	public String toString(){
     		String jsonText = "";

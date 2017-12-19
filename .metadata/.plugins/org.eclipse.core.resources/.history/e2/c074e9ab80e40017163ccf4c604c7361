@@ -1,0 +1,49 @@
+package com.kuravita.inventorymanagementservice.databasemodels;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+
+//This class models a store specific product. 
+
+@Entity
+public class CurrentInventory {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="current_inventory_id")
+	@JsonProperty("CURRENT_INVENTORY_ID")
+	private Long currentInventoryId;
+	
+	@Column(name = "upc", unique = true, nullable = false, length = 45)
+	@JsonProperty("UPC")
+	private String upc;
+	
+	private Date checkedInDate;
+	
+	private Date checkedOutDate;
+	
+	private Date expirationDate;
+	
+	private Integer quantity;
+	
+	private String defaultPackaging;
+	
+	private String smallestPackaging;
+	
+	private Long packagingTypeIdpackagingType;
+	
+	private Long productIdproduct;
+	
+	private Long storeIdstore;
+	
+	
+
+}

@@ -1,0 +1,70 @@
+package com.kuravita.inventorymanagementservice.databasemodels;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+
+/*This class models a store specific product. 
+@author blessed.mununuzi
+*/
+
+@Entity
+public class CurrentInventory {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="current_inventory_id")
+	@JsonProperty("CURRENT_INVENTORY_ID")
+	private Long currentInventoryId;
+	
+	@Column(name = "upc", unique = true, nullable = false, length = 45)
+	@JsonProperty("UPC")
+	private String upc;
+	
+	@Column(name="checked_in_dt_tm")
+	@JsonProperty("CHECKED_IN_DT_TM")
+	private Date checkedInDate;
+	
+	@Column(name="checked_out_dt_tm")
+	@JsonProperty("CHECKED_OUT_DT_TM")
+	private Date checkedOutDtTm;
+	
+	@Column(name="expiration_dt_tm")
+	@JsonProperty("EXPIRATION_DT_TM")
+	private Date expirationDtTm;
+	
+	@JsonProperty("QUANTITY")
+	private Integer quantity;
+	
+	@Column(name="default_packaging", length = 45)
+	@JsonProperty("DEFAULTPACKAGING")
+	private String defaultPackaging;
+	
+	@Column(name="smallest_packaging", length = 45)
+	@JsonProperty("SMALLEST_PACKAGING")
+	private String smallestPackaging;
+	
+	@Column(name="packaging_type_id")
+	@JsonProperty("PACKAGING_TYPE_ID")
+	private Long packagingTypeId;
+	
+	@Column(name="product_id")
+	@JsonProperty("PRODUCT_ID")
+	private Long productId;
+	
+	@Column(name="store_id")
+	@JsonProperty("STORE_ID")
+	private Long storeId;
+	
+	
+
+}
