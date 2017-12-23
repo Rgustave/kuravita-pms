@@ -1,5 +1,0 @@
-package com.kuravita.inventorymanagementservice.databasemodels;
-
-public class CurrentInventory {
-
-}

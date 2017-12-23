@@ -1,5 +1,0 @@
-package com.kuravita.inventorymanagementservice.repositories;
-
-public interface CurrentInventoryRepository {
-
-}
