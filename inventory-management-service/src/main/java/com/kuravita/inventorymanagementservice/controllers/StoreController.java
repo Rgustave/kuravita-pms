@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kuravita.inventorymanagementservice.databasemodels.Store;
-import com.kuravita.inventorymanagementservice.repositories.StoreRepository;
+import com.kuravita.inventorymanagementservice.model.Store;
+import com.kuravita.inventorymanagementservice.repository.StoreRepository;
 
 /**
  * This class is responsible of connecting the store entity to the outside world.

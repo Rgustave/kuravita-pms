@@ -37,6 +37,6 @@ public class Product {
 	private Category category;
 
 	@OneToMany(mappedBy ="product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<Inventory> inventories = new HashSet<>();
+	private Set<CurrentInventory> inventories = new HashSet<>();
 
 }

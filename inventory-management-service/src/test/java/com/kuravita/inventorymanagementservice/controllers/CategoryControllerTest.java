@@ -10,9 +10,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.kuravita.inventorymanagementservice.model.Category;
+import com.kuravita.inventorymanagementservice.repository.CategoryRepository;
+
 import org.springframework.http.MediaType;
-import com.kuravita.inventorymanagementservice.databasemodels.Category;
-import com.kuravita.inventorymanagementservice.repositories.CategoryRepository;
 
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
@@ -66,7 +67,7 @@ public class CategoryControllerTest {
 	        mockMvc.perform(get("/category/getOne/Immunologic"))
 	                .andExpect(status().isOk())
 	                .andExpect(content().contentType(contentType))
-	                .andExpect(jsonPath("$.id", is(this.categoryList.get(0).getIdCategory().intValue())))
+	                .andExpect(jsonPath("$.id", is(this.categoryList.get(0).getCategoryId().intValue())))
 	                //TODO; WHy is this is not working.
 //	                .andExpect(jsonPath("$.name"), is("Immunologic"))
 	                .andExpect(jsonPath("$.description", is("Medicines related to immune system")));

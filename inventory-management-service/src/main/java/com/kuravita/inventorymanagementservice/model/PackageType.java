@@ -32,7 +32,7 @@ public class PackageType implements Serializable {
 	private String description;
 	
 	@OneToMany(mappedBy = "packageType",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private Set<Inventory> inventories = new HashSet<>();
+	private Set<CurrentInventory> inventories = new HashSet<>();
 	
 	/**
 	 * 

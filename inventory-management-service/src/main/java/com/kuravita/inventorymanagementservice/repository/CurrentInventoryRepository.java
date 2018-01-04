@@ -6,20 +6,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-import com.kuravita.inventorymanagementservice.model.Inventory;
+import com.kuravita.inventorymanagementservice.model.CurrentInventory;
+
 
 @RepositoryRestResource(collectionResourceRel = "currentInventories", path = "inventories")
-public interface CurrentInventoryRepository extends JpaRepository<Inventory, Long> {
+public interface CurrentInventoryRepository extends JpaRepository<CurrentInventory, Long> {
 
 	//Not exposed by Spring Data REST
     @Override
     @RestResource(exported = false)
-    <S extends Inventory> S save(S s);
+    <S extends CurrentInventory> S save(S s);
 
     //Not exposed by Spring Data REST
     @Override
     @RestResource(exported = false)
-    <S extends Inventory> List<S> save(Iterable<S> iterable);
+    <S extends CurrentInventory> List<S> save(Iterable<S> iterable);
 
     //Not exposed by Spring Data REST
     @Override
@@ -29,12 +30,12 @@ public interface CurrentInventoryRepository extends JpaRepository<Inventory, Lon
     //Not exposed by Spring Data REST
     @Override
     @RestResource(exported = false)
-    void delete(Inventory store);
+    void delete(CurrentInventory store);
 
     //Not exposed by Spring Data REST
     @Override
     @RestResource(exported = false)
-    void delete(Iterable<? extends Inventory> iterable);
+    void delete(Iterable<? extends CurrentInventory> iterable);
 
     //Not exposed by Spring Data REST
     @Override

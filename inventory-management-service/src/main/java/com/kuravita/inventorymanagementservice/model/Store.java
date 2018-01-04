@@ -27,7 +27,6 @@ public class Store implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -280679337379684747L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long storeId;
@@ -39,7 +38,7 @@ public class Store implements Serializable {
 	private String address;
 
 	@OneToMany(mappedBy = "store",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private Set<Inventory> inventories = new HashSet<>();
+	private Set<CurrentInventory> inventories = new HashSet<>();
 
 	
 }
