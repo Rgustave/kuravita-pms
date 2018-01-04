@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -53,17 +54,17 @@ public class CurrentInventory {
 	@JsonProperty("SMALLEST_PACKAGING")
 	private String smallestPackaging;
 	
-	@Column(name="packaging_type_id")
+	@JoinColumn(name="packageTypeId")
 	@JsonProperty("PACKAGING_TYPE_ID")
-	private Long packagingTypeId;
+	private Package packageType;
 	
-	@Column(name="product_id")
+	@JoinColumn(name="productId")
 	@JsonProperty("PRODUCT_ID")
-	private Long productId;
+	private Product product ;
 	
-	@Column(name="store_id")
+	@JoinColumn(name="storeId")
 	@JsonProperty("STORE_ID")
-	private Long storeId;
+	private Store store;
 
 	public Long getCurrentInventoryId() {
 		return currentInventoryId;
@@ -129,28 +130,30 @@ public class CurrentInventory {
 		this.smallestPackaging = smallestPackaging;
 	}
 
-	public Long getPackagingTypeId() {
-		return packagingTypeId;
+	public Package getPackageType() {
+		return packageType;
 	}
 
-	public void setPackagingTypeId(Long packagingTypeId) {
-		this.packagingTypeId = packagingTypeId;
+	public void setPackageType(Package packageType) {
+		this.packageType = packageType;
 	}
 
-	public Long getProductId() {
-		return productId;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductId(Long productId) {
-		this.productId = productId;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
-	public Long getStoreId() {
-		return storeId;
+	public Store getStore() {
+		return store;
 	}
 
-	public void setStoreId(Long storeId) {
-		this.storeId = storeId;
-	}	
+	public void setStore(Store store) {
+		this.store = store;
+	}
+
+	
 
 }
