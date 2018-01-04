@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kuravita.inventorymanagementservice.databasemodels.Category;
-import com.kuravita.inventorymanagementservice.repositories.CategoryRepository;
+import com.kuravita.inventorymanagementservice.model.Category;
+import com.kuravita.inventorymanagementservice.repository.CategoryRepository;
 
 /**
  * This class is responsible of connecting the category to the outside world.

@@ -1,4 +1,4 @@
-package com.kuravita.inventorymanagementservice.databasemodels;
+package com.kuravita.inventorymanagementservice.model;
 
 import java.util.Date;
 
