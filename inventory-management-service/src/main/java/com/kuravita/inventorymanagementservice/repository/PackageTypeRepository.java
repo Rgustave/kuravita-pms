@@ -16,6 +16,7 @@ public interface PackageTypeRepository extends CrudRepository<PackageType, Long>
 	
 	
 	PackageType findByName(@Param("name") String name);
-	
+	PackageType findByPackageTypeId(@Param("id") Long packageTypeId);
+
 
 }

@@ -59,8 +59,8 @@ public class CurrentInventory implements Serializable {
 	private PackageType packageType;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "product_id")
-	private Product product;
+	@JoinColumn(name = "pharmacyProductId")
+	private PharmacyProduct pharmacyProductId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "store_id")

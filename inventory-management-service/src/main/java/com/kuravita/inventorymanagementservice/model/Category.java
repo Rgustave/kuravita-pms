@@ -37,7 +37,7 @@ public class Category implements Serializable {
 	@Column
 	private String description;
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // owner of the relationship.
-	private Set<Product> products;
-
+	private Set<PharmacyProduct> pharmacyProducts;
+	
 
 }

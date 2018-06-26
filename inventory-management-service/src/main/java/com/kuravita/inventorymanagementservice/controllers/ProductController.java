@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kuravita.inventorymanagementservice.model.Product;
-import com.kuravita.inventorymanagementservice.repository.ProductRepository;
+import com.kuravita.inventorymanagementservice.model.PharmacyProduct;
+import com.kuravita.inventorymanagementservice.repository.PharmacyProductRepository;
 
 /**
  * This class is responsible of connecting the product entity to the outside world.
@@ -28,7 +28,7 @@ import com.kuravita.inventorymanagementservice.repository.ProductRepository;
 public class ProductController {
 		
 		@Autowired
-		private ProductRepository proRepo;
+		private PharmacyProductRepository proRepo;
 		
 		/**
 		 * Create
@@ -36,8 +36,8 @@ public class ProductController {
 		 * @return
 		 */
 		@PostMapping("/save")
-		public Product saveProduct(@Valid @RequestBody Product Product) {
-			return proRepo.save(Product);
+		public PharmacyProduct savePharmacyProduct(@Valid @RequestBody PharmacyProduct pharmacyProduct) {
+			return proRepo.save(pharmacyProduct);
 		}
 		
 		/**
@@ -45,7 +45,7 @@ public class ProductController {
 		 * @return
 		 */
 		@GetMapping("/getAll")
-		public Iterable<Product> getAllProducts(){
+		public Iterable<PharmacyProduct> getAllProducts(){
 			return proRepo.findAll();
 		}
 		
@@ -55,8 +55,8 @@ public class ProductController {
 		 * @return
 		 */
 		@GetMapping("/getOne/{name}")
-		public ResponseEntity<Product> getProductById(@PathVariable(value = "name") String ProductName){
-			Product pro = proRepo.findByName(ProductName);
+		public ResponseEntity<PharmacyProduct> getProductById(@PathVariable(value = "name") String ProductName){
+			PharmacyProduct pro = proRepo.findByName(ProductName);
 			if(pro == null)
 				return ResponseEntity.notFound().build();
 			return ResponseEntity.ok().body(pro);
@@ -69,9 +69,9 @@ public class ProductController {
 		 * @return
 		 */
 		@PutMapping("/updateOne/{name}")
-		public ResponseEntity<Product> updateProduct(@PathVariable(value = "name") String proName, 
-		                                       @Valid @RequestBody Product pro) {
-		    Product Product = proRepo.findByName(proName);
+		public ResponseEntity<PharmacyProduct> updateProduct(@PathVariable(value = "name") String proName, 
+		                                       @Valid @RequestBody PharmacyProduct pro) {
+			PharmacyProduct Product = proRepo.findByName(proName);
 		    if(Product == null) {
 		        return ResponseEntity.notFound().build();
 		    }
@@ -79,7 +79,7 @@ public class ProductController {
 		    Product.setDescription(pro.getDescription());
 		    Product.setCategory(pro.getCategory());
 		    
-		    Product updatedProduct = proRepo.save(Product);
+		    PharmacyProduct updatedProduct = proRepo.save(Product);
 		    return ResponseEntity.ok(updatedProduct);
 		}
 		
@@ -89,8 +89,8 @@ public class ProductController {
 		 * @return
 		 */
 		@DeleteMapping("/deleteOne/{name}")
-		public ResponseEntity<Product> deleteProduct(@PathVariable(value = "name") String proName) {
-		    Product Product = proRepo.findByName(proName);
+		public ResponseEntity<PharmacyProduct> deleteProduct(@PathVariable(value = "name") String proName) {
+			PharmacyProduct Product = proRepo.findByName(proName);
 		    if(Product == null) {
 		        return ResponseEntity.notFound().build();
 		    }

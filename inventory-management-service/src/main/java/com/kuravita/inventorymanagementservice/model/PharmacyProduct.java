@@ -1,9 +1,7 @@
 package com.kuravita.inventorymanagementservice.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,8 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
 import lombok.Data;
 
 /**
@@ -24,19 +22,32 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Product {
+public class PharmacyProduct implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 908436688620689508L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long productId;
+	int pharmacyProductPharmacyProductId;
 	@NotNull
 	@Column(unique = true)
+	
 	private String name;
+	
 	private String description;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoryId")
 	private Category category;
-
-	@OneToMany(mappedBy ="product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<CurrentInventory> inventories = new HashSet<>();
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "pharmacyDoseId")
+	private PharmacyDose pharmacyDose;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "pharmacyFrequencyId")
+	private PharmacyFrequency pharmacyFrequency;
+	
 
 }

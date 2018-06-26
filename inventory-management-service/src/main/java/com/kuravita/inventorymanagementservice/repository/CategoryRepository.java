@@ -25,7 +25,7 @@ public interface CategoryRepository extends CrudRepository<Category, Long>{
     <S extends Category> S save(S s);
 
     //Not exposed by Spring Data REST
-    @Override
+    
     @RestResource(exported = false)
     <S extends Category> Iterable<S> save(Iterable<S> iterable);
 

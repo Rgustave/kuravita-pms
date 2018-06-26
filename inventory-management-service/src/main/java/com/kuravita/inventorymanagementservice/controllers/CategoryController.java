@@ -1,17 +1,22 @@
 package com.kuravita.inventorymanagementservice.controllers;
 
+import java.util.NoSuchElementException;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kuravita.inventorymanagementservice.model.Category;
@@ -77,7 +82,7 @@ public class CategoryController {
 	   
 	    category.setName(cat.getName());
 	    category.setDescription(cat.getDescription());
-	    category.setProducts(cat.getProducts());
+	    category.setPharmacyProducts(cat.getPharmacyProducts());
 	    Category updatedCategory = catRepo.save(category);
 	    
 	    return ResponseEntity.ok(updatedCategory);
@@ -98,4 +103,18 @@ public class CategoryController {
 	    catRepo.delete(category);
 	    return ResponseEntity.ok().build();
 	}
+	
+	
+	   /**
+     * Exception handler if NoSuchElementException is thrown in this Controller
+     *
+     * @param ex
+     * @return Error message String.
+     */
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NoSuchElementException.class)
+    public String return400(NoSuchElementException ex) {
+        return ex.getMessage();
+
+    }
 }
